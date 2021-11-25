@@ -7,8 +7,9 @@ h1 {
 
 .formWrapper {
   margin: 0 auto;
-  width: 60%;
+  width: 70%;
   text-align: center;
+  margin-bottom: 20px;
 }
 .selectWrapper {
 }

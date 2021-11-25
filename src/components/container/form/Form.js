@@ -1,10 +1,11 @@
+import React from "react";
 import styles from "./Form.module.css";
 
 const Form = () => {
   return (
     <>
-      <h1>Search for Books</h1>
       <div className={styles.formWrapper}>
+        <h1>Search for Books</h1>
         <form className={styles.form}>
           <input type="text" />
           <div className={styles.selectWrapper}>
