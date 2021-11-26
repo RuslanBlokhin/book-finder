@@ -12,7 +12,7 @@ const BooksGallery = () => {
       {books.map(({ id, volumeInfo }) => (
         <BooksGalleryItem
           key={id}
-          image={volumeInfo.imageLinks.thumbnail}
+          image={volumeInfo.imageLinks.smallThumbnail}
           title={volumeInfo.title}
           authors={volumeInfo.authors}
           id={id}
