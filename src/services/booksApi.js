@@ -9,7 +9,7 @@ const api = {
       .get(`?q=all&maxResults=${booksOnPage}&key=${API_KEY}`)
       .then((response) => response.data.items);
   },
-  getByQueryMovies(query, booksOnPage, sorting) {
+  getByQueryBooks(query, booksOnPage, sorting) {
     return axios
       .get(
         `?q=${query}&maxResults=${booksOnPage}&orderBy=${sorting}&key=${API_KEY}`

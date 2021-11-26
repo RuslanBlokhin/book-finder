@@ -5,6 +5,12 @@ h1 {
 .form {
 }
 
+.inputButtonWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .formWrapper {
   margin: 0 auto;
   width: 70%;
