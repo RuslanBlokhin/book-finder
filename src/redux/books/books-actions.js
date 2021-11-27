@@ -11,3 +11,7 @@ export const getQueryBooksError = createAction("books/getQueryBooksError");
 export const getQuery = createAction("books/getQuery");
 export const getCatedory = createAction("books/getCatedory");
 export const getSorting = createAction("books/getSorting");
+
+export const getBookByIdRequest = createAction("books/getBookByIdRequest");
+export const getBookByIdSuccess = createAction("books/getBookByIdSuccess");
+export const getBookByIdError = createAction("books/getBookByIdError");

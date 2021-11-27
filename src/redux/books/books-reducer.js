@@ -7,12 +7,19 @@ import {
   getQuery,
   getCatedory,
   getSorting,
+  getBookByIdRequest,
+  getBookByIdSuccess,
+  getBookByIdError,
 } from "./books-actions";
 
 const BooksReducer = createReducer([], {
   [getBooksSuccess]: (_, { payload }) => payload,
   [getQueryBooksSuccess]: (_, { payload }) => payload,
 });
+
+// const BookByIdReducer = createReducer("", {
+//   [getBookByIdSuccess]: (_, { payload }) => payload,
+// });
 
 const QueryReducer = createReducer("", {
   [getQuery]: (_, { payload }) => payload,

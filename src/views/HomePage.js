@@ -37,7 +37,9 @@ const HomePage = () => {
   };
 
   useLayoutEffect(() => {
+    setLoader(true);
     dispatch(getBooks(booksOnPage));
+    setLoader(false);
   }, [booksOnPage]);
 
   useEffect(() => {
@@ -45,11 +47,6 @@ const HomePage = () => {
       mounted.current = true;
     } else {
       dispatch(getQueryBooks(query, booksOnPage, sorting));
-      // dispatch(
-      //   push({
-      //     search: `q=${query}&orderBy=${sorting}&maxResults=${booksOnPage}`,
-      //   })
-      // );
     }
   }, [query, booksOnPage, sorting]);
 

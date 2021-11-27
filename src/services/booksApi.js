@@ -16,9 +16,9 @@ const api = {
       )
       .then((response) => response.data.items);
   },
-  // getMovieById(id, option = "", page = "") {
-  //   return axios.get(`${id}?key=${API_KEY}`);
-  // },
+  getBookById(id) {
+    return axios.get(`${id}?key=${API_KEY}`);
+  },
 };
 
 export default api;

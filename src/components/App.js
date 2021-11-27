@@ -18,7 +18,7 @@ const App = () => {
         <Routes>
           <Route index path="/" element={<HomePage />} />
 
-          <Route path=":volumeId" component={<BookDetailPage />} />
+          <Route path="/:volumeId" element={<BookDetailPage />} />
         </Routes>
       </Suspense>
     </Container>

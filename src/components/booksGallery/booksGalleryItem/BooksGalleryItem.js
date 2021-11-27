@@ -7,7 +7,7 @@ const BooksGalleryItem = ({ id, authors, title, image, location }) => {
     <li className={styles.booksGalleryItem}>
       <Link
         to={{
-          pathname: `${id}`,
+          pathname: `/${id}`,
           state: { from: location },
         }}
       >
