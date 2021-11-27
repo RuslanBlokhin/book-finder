@@ -8,7 +8,7 @@ import MyLoader from "./myLoader/MyLoader";
 const HomePage = lazy(() =>
   import("../views/HomePage" /* webpackChunkName: "home-page" */)
 );
-// const BooksPage = lazy(() => import("../views/BooksPage"));
+const BookDetailPage = lazy(() => import("../views/BookDetailPage"));
 
 const App = () => {
   return (
@@ -17,8 +17,8 @@ const App = () => {
       <Suspense fallback={<MyLoader />}>
         <Routes>
           <Route index path="/" element={<HomePage />} />
-          {/* <Route path="/books" element={<BooksPage />} /> */}
-          {/* <Route path=":volumeId" component={<BookDetailPage/> /> */}
+
+          <Route path=":volumeId" component={<BookDetailPage />} />
         </Routes>
       </Suspense>
     </Container>

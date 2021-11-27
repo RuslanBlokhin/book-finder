@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+
 import {
   getBooksSelector,
   getQuerySelector,
@@ -35,7 +36,7 @@ const HomePage = () => {
     setBooksOnPage(booksOnPage + 10);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(getBooks(booksOnPage));
   }, [booksOnPage]);
 
@@ -44,6 +45,11 @@ const HomePage = () => {
       mounted.current = true;
     } else {
       dispatch(getQueryBooks(query, booksOnPage, sorting));
+      // dispatch(
+      //   push({
+      //     search: `q=${query}&orderBy=${sorting}&maxResults=${booksOnPage}`,
+      //   })
+      // );
     }
   }, [query, booksOnPage, sorting]);
 
