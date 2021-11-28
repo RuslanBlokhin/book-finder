@@ -24,13 +24,13 @@ const Form = () => {
   const dispatch = useDispatch();
 
   const categoryValue = [
-    "all",
-    "ART",
-    "biography",
-    "computers",
-    "history",
-    "medicial",
-    "poetry",
+    "All",
+    "Art",
+    "Biography",
+    "Computers",
+    "History",
+    "Medicial",
+    "Poetry",
   ];
 
   function handleInputChange(event) {

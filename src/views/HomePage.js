@@ -15,7 +15,7 @@ import BooksGallery from "../components/booksGallery/BooksGallery";
 import { getBooks, getQueryBooks } from "../redux/books/books-operations";
 
 const HomePage = () => {
-  const [booksOnPage, setBooksOnPage] = useState(10);
+  const [booksOnPage, setBooksOnPage] = useState(20);
   const [loader, setLoader] = useState(false);
 
   const books = useSelector(getBooksSelector);
@@ -23,9 +23,9 @@ const HomePage = () => {
   const category = useSelector(getCategorySelector);
   const sorting = useSelector(getSortingSelector);
 
-  console.log(query);
-  console.log(category);
-  console.log(sorting);
+  // console.log(query);
+  // console.log(category);
+  // console.log(sorting);
 
   const mounted = useRef();
 
@@ -33,7 +33,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
 
   const handleOnButtonClick = () => {
-    setBooksOnPage(booksOnPage + 10);
+    setBooksOnPage(booksOnPage + 20);
   };
 
   useLayoutEffect(() => {

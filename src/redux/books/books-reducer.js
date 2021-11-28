@@ -24,7 +24,7 @@ const BooksReducer = createReducer([], {
 const QueryReducer = createReducer("", {
   [getQuery]: (_, { payload }) => payload,
 });
-const CategoryReducer = createReducer("", {
+const CategoryReducer = createReducer("all", {
   [getCatedory]: (_, { payload }) => payload,
 });
 const SortingReducer = createReducer("", {
