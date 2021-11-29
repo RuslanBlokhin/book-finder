@@ -2,7 +2,7 @@
   padding: 8px 16px;
   border-radius: 20px;
   margin: 10px;
-  background-color: rgb(95, 106, 255);
+  background-color: rgb(148, 156, 255);
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
   display: inline-block;
@@ -26,9 +26,9 @@
 
 .Button:hover:not([disabled]),
 .Button:focus {
-  background-color: rgb(216, 86, 255);
+  background-color: rgb(95, 106, 255);
   color: antiquewhite;
-  box-shadow: 0px 0px 15px 5px rgba(247, 0, 255, 0.8);
+  box-shadow: 0px 0px 15px 5px rgba(249, 253, 183, 0.8);
 }
 
 .Button:disabled {

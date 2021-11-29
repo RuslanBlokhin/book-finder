@@ -4,7 +4,7 @@ h1 {
 
 .formWrapper {
   margin: 0 auto;
-  width: 84%;
+  width: 100%;
   text-align: center;
   top: 0;
   left: 0;
@@ -19,9 +19,13 @@ h1 {
   padding-left: 24px;
   padding-top: 12px;
   padding-bottom: 12px;
-  margin-bottom: 20px;
+
   color: #fff;
   background-color: rgb(122, 122, 122);
+  background-image: url(https://besthqwallpapers.com/Uploads/30-3-2020/126996/thumb2-books-reading-books-background-with-books-bookshelf.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: -166px;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }

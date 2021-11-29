@@ -27,7 +27,6 @@ const BooksGallery = () => {
   }
   console.log(books);
 
-  // const showTotalBooks = books
   return (
     <div className={styles.wrapper}>
       {books[0] && (
