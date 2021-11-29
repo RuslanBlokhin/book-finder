@@ -1,67 +1,46 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   getBooksSelector,
   getQuerySelector,
   getSortingSelector,
-  getCategorySelector,
 } from "../redux/books/books-selectors";
 import Button from "../components/button/Button";
-// import Notification from "../components/notification/Notification";
+import Notification from "../components/notification/Notification";
 import MyLoader from "../components/myLoader/MyLoader";
 import BooksGallery from "../components/booksGallery/BooksGallery";
-import { getBooks, getQueryBooks } from "../redux/books/books-operations";
+import {
+  getQueryBooks,
+  getOnLoadMoreClickBooks,
+} from "../redux/books/books-operations";
 
 const HomePage = () => {
-  const [booksOnPage, setBooksOnPage] = useState(20);
+  const [startIndex, setStartIndex] = useState(0);
   const [loader, setLoader] = useState(false);
 
   const books = useSelector(getBooksSelector);
   const query = useSelector(getQuerySelector);
-  const category = useSelector(getCategorySelector);
   const sorting = useSelector(getSortingSelector);
 
-  // console.log(query);
-  // console.log(category);
-  // console.log(sorting);
-
-  const mounted = useRef();
-
-  // console.log(category);
   const dispatch = useDispatch();
 
   const handleOnButtonClick = () => {
-    setBooksOnPage(booksOnPage + 20);
+    setStartIndex(books.length);
+
+    dispatch(getOnLoadMoreClickBooks(query, startIndex, sorting));
   };
 
-  useLayoutEffect(() => {
-    setLoader(true);
-    dispatch(getBooks(booksOnPage));
-    setLoader(false);
-  }, [booksOnPage]);
-
   useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true;
-    } else {
-      dispatch(getQueryBooks(query, booksOnPage, sorting));
-    }
-  }, [query, booksOnPage, sorting]);
-
-  // useLayoutEffect(() => {
-  //   dispatch(getBooks(booksOnPage));
-  // }, [booksOnPage]);
-
-  // useCallback(() => {
-  //   dispatch(getQueryBooks(query, booksOnPage, sorting));
-  // }, [query]);
+    dispatch(getQueryBooks(query, startIndex, sorting));
+  }, [query, startIndex, sorting]);
 
   const showButtons = !loader && books[0] && true;
 
   return (
     <>
+      {!query && <Notification message="Please enter a search parameter" />}
+
       <BooksGallery />
       {/* {error && <Notification message="Something wrong :(" />} */}
       {loader && <MyLoader />}

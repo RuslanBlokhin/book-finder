@@ -1,34 +1,36 @@
 import api from "../../services/booksApi";
 
 import {
-  getBooksRequest,
-  getBooksSuccess,
-  getBooksError,
   getQueryBooksRequest,
   getQueryBooksSuccess,
   getQueryBooksError,
+  onLoadMoreCLickRequest,
+  onLoadMoreCLickSuccess,
+  onLoadMoreCLickError,
+  getTotalBooks,
 } from "./books-actions";
 
-const getBooks = (booksOnPage) => async (dispatch) => {
-  dispatch(getBooksRequest());
-  try {
-    const data = await api.getBooks(booksOnPage);
-    // console.log(data);
-    dispatch(getBooksSuccess(data));
-  } catch (error) {
-    dispatch(getBooksError(error));
-  }
-};
-
-const getQueryBooks = (query, booksOnPage, sorting) => async (dispatch) => {
+const getQueryBooks = (query, startIndex, sorting) => async (dispatch) => {
   dispatch(getQueryBooksRequest());
   try {
-    const data = await api.getByQueryBooks(query, booksOnPage, sorting);
-    // console.log(data);
-    dispatch(getQueryBooksSuccess(data));
+    const data = await api.getByQueryBooks(query, startIndex, sorting);
+    dispatch(getQueryBooksSuccess(data.items));
+    const numberOfBooks = data.totalItems;
+    dispatch(getTotalBooks(numberOfBooks));
   } catch (error) {
     dispatch(getQueryBooksError(error));
   }
 };
 
-export { getBooks, getQueryBooks };
+const getOnLoadMoreClickBooks =
+  (query, startIndex, sorting) => async (dispatch) => {
+    dispatch(onLoadMoreCLickRequest());
+    try {
+      const data = await api.getByQueryBooks(query, startIndex, sorting);
+      dispatch(onLoadMoreCLickSuccess(data.items));
+    } catch (error) {
+      dispatch(onLoadMoreCLickError(error));
+    }
+  };
+
+export { getQueryBooks, getOnLoadMoreClickBooks };

@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import Button from "../button/Button";
 import styles from "./Form.module.css";
 import { useDispatch } from "react-redux";
-// import {
-//   getQuerySelector,
-//   getCategorySelector,
-//   getSortingSelector,
-// } from "../../redux/books/books-selectors";
+
 import {
   getQuery,
   getCatedory,
@@ -18,13 +14,10 @@ const Form = () => {
   const [sortingValue, setSortingValue] = useState("relevance");
   const [queryValue, setQueryValue] = useState("");
 
-  // const query = useSelector(getQuerySelector);
-  // const category = useSelector(getCategorySelector);
-  // const sorting = useSelector(getSortingSelector);
   const dispatch = useDispatch();
 
   const categoryValue = [
-    "All",
+    "all",
     "Art",
     "Biography",
     "Computers",
@@ -34,7 +27,7 @@ const Form = () => {
   ];
 
   function handleInputChange(event) {
-    const { value } = event.currentTarget;
+    const { value } = event.target;
     setQueryValue(value);
   }
 
@@ -49,14 +42,6 @@ const Form = () => {
     dispatch(getQuery(queryValue));
     dispatch(getCatedory(categoryValueState));
     dispatch(getSorting(sortingValue));
-    // dispatch(getQueryBooks(query, booksOnPage, sorting));
-    // dispatch(getQuery(event.target.value));
-    // setBooks([]);
-    // setBooksOnPage(30);
-    // setError("");
-    // setQuery(query);
-    // onSubmit(query);
-    // setQuery("");
   }
 
   return (
@@ -83,6 +68,7 @@ const Form = () => {
                 className={styles.select}
                 defaultValue={"all"}
                 onChange={(event) => {
+                  // dispatch(getCatedory(event.target.value));
                   setCategoryValueState(event.target.value);
                 }}
               >
@@ -95,6 +81,7 @@ const Form = () => {
                 className={styles.select}
                 defaultValue={"relevance"}
                 onChange={(event) => {
+                  // dispatch(getSorting(event.target.value));
                   setSortingValue(event.target.value);
                 }}
               >

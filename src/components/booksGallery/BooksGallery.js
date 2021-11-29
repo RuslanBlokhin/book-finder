@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import {
   getBooksSelector,
   getCategorySelector,
+  getTotalBooks,
 } from "../../redux/books/books-selectors";
 import styles from "./BooksGallery.module.css";
 import BooksGalleryItem from "./booksGalleryItem/BooksGalleryItem";
@@ -10,13 +11,7 @@ import BooksGalleryItem from "./booksGalleryItem/BooksGalleryItem";
 const BooksGallery = () => {
   const books = useSelector(getBooksSelector);
   const category = useSelector(getCategorySelector);
-  console.log(books);
-  console.log(category);
-
-  // const filter = books.filter((item) =>
-  //   item.volumeInfo.categories.includes(category)
-  // );
-  // console.log(filter);
+  const totalBooks = useSelector(getTotalBooks);
 
   function filterBooks(books) {
     if (category === "all") {
@@ -26,24 +21,30 @@ const BooksGallery = () => {
       const array = theCategory.filter((item) =>
         item.volumeInfo.categories.includes(category)
       );
-      console.log(array);
+
       return array;
     }
   }
+  console.log(books);
 
-  // console.log(books);
+  // const showTotalBooks = books
   return (
-    <ul className={styles.booksGallery}>
-      {filterBooks(books).map(({ id, volumeInfo }) => (
-        <BooksGalleryItem
-          key={id}
-          image={volumeInfo.imageLinks.thumbnail}
-          title={volumeInfo.title}
-          authors={volumeInfo.authors}
-          id={id}
-        />
-      ))}
-    </ul>
+    <div className={styles.wrapper}>
+      {books[0] && (
+        <p className={styles.foundResult}>Found {totalBooks} results</p>
+      )}
+      <ul className={styles.booksGallery}>
+        {filterBooks(books).map(({ id, volumeInfo }) => (
+          <BooksGalleryItem
+            key={id}
+            image={volumeInfo.imageLinks.thumbnail}
+            title={volumeInfo.title}
+            authors={volumeInfo.authors}
+            id={id}
+          />
+        ))}
+      </ul>
+    </div>
   );
 };
 

@@ -1,33 +1,30 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-
 import {
-  getBooksSuccess,
   getQueryBooksSuccess,
   getQuery,
   getCatedory,
   getSorting,
-  getBookByIdRequest,
-  getBookByIdSuccess,
-  getBookByIdError,
+  getTotalBooks,
+  onLoadMoreCLickSuccess,
 } from "./books-actions";
 
 const BooksReducer = createReducer([], {
-  [getBooksSuccess]: (_, { payload }) => payload,
   [getQueryBooksSuccess]: (_, { payload }) => payload,
+  [onLoadMoreCLickSuccess]: (state, { payload }) => [...state, ...payload],
 });
 
-// const BookByIdReducer = createReducer("", {
-//   [getBookByIdSuccess]: (_, { payload }) => payload,
-// });
-
-const QueryReducer = createReducer("", {
+const TotalBooks = createReducer(0, {
+  [getTotalBooks]: (_, { payload }) => payload,
+});
+const QueryReducer = createReducer("cat", {
   [getQuery]: (_, { payload }) => payload,
 });
+
 const CategoryReducer = createReducer("all", {
   [getCatedory]: (_, { payload }) => payload,
 });
-const SortingReducer = createReducer("", {
+const SortingReducer = createReducer("relevance", {
   [getSorting]: (_, { payload }) => payload,
 });
 
@@ -36,4 +33,5 @@ export default combineReducers({
   QueryReducer,
   CategoryReducer,
   SortingReducer,
+  TotalBooks,
 });

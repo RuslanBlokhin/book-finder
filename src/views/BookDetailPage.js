@@ -18,14 +18,13 @@ const BookDetailPage = () => {
       setLoader(true);
       const response = await api.getBookById(id);
       const book = response.data.volumeInfo;
-      const image = response.data.volumeInfo.imageLinks.small;
+      const image = response.data.volumeInfo.imageLinks.thumbnail;
       setBook(book);
       setImage(image);
     } catch (error) {
       setError(error);
       setLoader(false);
     }
-    setLoader(false);
   }
   console.log(book);
 
@@ -33,26 +32,27 @@ const BookDetailPage = () => {
 
   useEffect(() => {
     getBook();
+    setLoader(false);
   }, [id]);
 
   return (
     <>
       {loader && <MyLoader />}
-      {title ? (
-        <div className={styles.wrapper}>
-          <div className={styles.bookImg}>
-            <img className={styles.image} src={image} alt="BookImage" />
-          </div>
-          <div className={styles.bookInfo}>
-            <p className={styles.categories}>{categories}</p>
-            <p className={styles.title}>{title}</p>
-            <p className={styles.authors}>{authors}</p>
-            <p className={styles.description}>{description}</p>
-          </div>
+      {/* {book ? ( */}
+      <div className={styles.wrapper}>
+        <div className={styles.bookImg}>
+          <img className={styles.image} src={image} alt="BookImage" />
         </div>
-      ) : (
-        <Notification message="Sorry, no data :(, try again" />
-      )}
+        <div className={styles.bookInfo}>
+          <p className={styles.categories}>{categories}</p>
+          <p className={styles.title}>{title}</p>
+          <p className={styles.authors}>{authors}</p>
+          <p className={styles.description}>{description}</p>
+        </div>
+      </div>
+      {/* // ) : (
+      //   <Notification message="Sorry, no data :(, try again" />
+      // )} */}
     </>
   );
 };
