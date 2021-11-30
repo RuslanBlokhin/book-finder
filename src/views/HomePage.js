@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   getBooksSelector,
   getQuerySelector,
   getSortingSelector,
+  getLoader,
 } from "../redux/books/books-selectors";
 import Button from "../components/button/Button";
 import Notification from "../components/notification/Notification";
@@ -17,17 +17,16 @@ import {
 
 const HomePage = () => {
   const [startIndex, setStartIndex] = useState(0);
-  const [loader, setLoader] = useState(false);
 
   const books = useSelector(getBooksSelector);
   const query = useSelector(getQuerySelector);
   const sorting = useSelector(getSortingSelector);
+  const loader = useSelector(getLoader);
 
   const dispatch = useDispatch();
 
   const handleOnButtonClick = () => {
     setStartIndex(books.length);
-
     dispatch(getOnLoadMoreClickBooks(query, startIndex, sorting));
   };
 
@@ -40,9 +39,7 @@ const HomePage = () => {
   return (
     <>
       {!query && <Notification message="Please enter a search parameter" />}
-
       <BooksGallery />
-      {/* {error && <Notification message="Something wrong :(" />} */}
       {loader && <MyLoader />}
       {showButtons && (
         <Button

@@ -16,3 +16,5 @@ export const getTotalBooks = createAction("books/getTotalBooks");
 export const getQuery = createAction("books/getQuery");
 export const getCatedory = createAction("books/getCatedory");
 export const getSorting = createAction("books/getSorting");
+export const getStartIndex = createAction("books/getStartIndex");
+export const getLoaderToggle = createAction("books/getLoaderToggle");

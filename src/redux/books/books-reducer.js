@@ -7,6 +7,8 @@ import {
   getSorting,
   getTotalBooks,
   onLoadMoreCLickSuccess,
+  getStartIndex,
+  getLoaderToggle,
 } from "./books-actions";
 
 const BooksReducer = createReducer([], {
@@ -20,12 +22,17 @@ const TotalBooks = createReducer(0, {
 const QueryReducer = createReducer("cat", {
   [getQuery]: (_, { payload }) => payload,
 });
-
 const CategoryReducer = createReducer("all", {
   [getCatedory]: (_, { payload }) => payload,
 });
 const SortingReducer = createReducer("relevance", {
   [getSorting]: (_, { payload }) => payload,
+});
+const StartIndexReducer = createReducer(0, {
+  [getStartIndex]: (_, { payload }) => payload,
+});
+const ToggleLoaderReducer = createReducer(false, {
+  [getLoaderToggle]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
@@ -34,4 +41,6 @@ export default combineReducers({
   CategoryReducer,
   SortingReducer,
   TotalBooks,
+  StartIndexReducer,
+  ToggleLoaderReducer,
 });

@@ -21,11 +21,9 @@ const BooksGallery = () => {
       const array = theCategory.filter((item) =>
         item.volumeInfo.categories.includes(category)
       );
-
       return array;
     }
   }
-  console.log(books);
 
   return (
     <div className={styles.wrapper}>
@@ -33,13 +31,13 @@ const BooksGallery = () => {
         <p className={styles.foundResult}>Found {totalBooks} results</p>
       )}
       <ul className={styles.booksGallery}>
-        {filterBooks(books).map(({ id, volumeInfo }) => (
+        {filterBooks(books).map((item) => (
           <BooksGalleryItem
-            key={id}
-            image={volumeInfo.imageLinks.thumbnail}
-            title={volumeInfo.title}
-            authors={volumeInfo.authors}
-            id={id}
+            key={item.id}
+            image={item.volumeInfo.imageLinks?.thumbnail}
+            title={item.volumeInfo.title}
+            authors={item.volumeInfo.authors}
+            id={item.id}
           />
         ))}
       </ul>

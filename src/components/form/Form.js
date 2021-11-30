@@ -1,20 +1,27 @@
 import React, { useState } from "react";
 import Button from "../button/Button";
 import styles from "./Form.module.css";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getQuerySelector,
+  getSortingSelector,
+  getStartIndex,
+} from "../../redux/books/books-selectors";
 import {
   getQuery,
   getCatedory,
   getSorting,
 } from "../../redux/books/books-actions";
+import { getQueryBooks } from "../../redux/books/books-operations";
 
 const Form = () => {
-  const [categoryValueState, setCategoryValueState] = useState("all");
-  const [sortingValue, setSortingValue] = useState("relevance");
   const [queryValue, setQueryValue] = useState("");
 
   const dispatch = useDispatch();
+
+  const query = useSelector(getQuerySelector);
+  const sorting = useSelector(getSortingSelector);
+  const startIndex = useSelector(getStartIndex);
 
   const categoryValue = [
     "all",
@@ -39,9 +46,8 @@ const Form = () => {
 
   function handleFormSubmit(event) {
     event.preventDefault();
+    dispatch(getQueryBooks(query, startIndex, sorting));
     dispatch(getQuery(queryValue));
-    dispatch(getCatedory(categoryValueState));
-    dispatch(getSorting(sortingValue));
   }
 
   return (
@@ -68,8 +74,7 @@ const Form = () => {
                 className={styles.select}
                 defaultValue={"all"}
                 onChange={(event) => {
-                  // dispatch(getCatedory(event.target.value));
-                  setCategoryValueState(event.target.value);
+                  dispatch(getCatedory(event.target.value));
                 }}
               >
                 {options}
@@ -81,8 +86,7 @@ const Form = () => {
                 className={styles.select}
                 defaultValue={"relevance"}
                 onChange={(event) => {
-                  // dispatch(getSorting(event.target.value));
-                  setSortingValue(event.target.value);
+                  dispatch(getSorting(event.target.value));
                 }}
               >
                 <option value="relevance">relevance</option>
