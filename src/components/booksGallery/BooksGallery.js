@@ -31,9 +31,9 @@ const BooksGallery = () => {
         <p className={styles.foundResult}>Found {totalBooks} results</p>
       )}
       <ul className={styles.booksGallery}>
-        {filterBooks(books).map((item) => (
+        {filterBooks(books).map((item, index) => (
           <BooksGalleryItem
-            key={item.id}
+            key={index}
             image={item.volumeInfo.imageLinks?.thumbnail}
             title={item.volumeInfo.title}
             authors={item.volumeInfo.authors}
