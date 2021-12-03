@@ -32,7 +32,7 @@ const BookDetailPage = () => {
 
   const { title, description, authors, categories } = book;
 
-  console.log(book);
+  // console.log(book);
 
   useEffect(() => {
     getBook();

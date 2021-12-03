@@ -26,13 +26,13 @@ const HomePage = () => {
   const dispatch = useDispatch();
 
   const handleOnButtonClick = () => {
-    setStartIndex(books.length);
+    setStartIndex(startIndex + 30);
     dispatch(getOnLoadMoreClickBooks(query, startIndex, sorting));
   };
 
   useEffect(() => {
     dispatch(getQueryBooks(query, startIndex, sorting));
-  }, [query, startIndex, sorting]);
+  }, [sorting]);
 
   const showButtons = !loader && books[0] && true;
 
